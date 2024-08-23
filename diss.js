@@ -11,31 +11,48 @@ const ballAnim = gsap
   .to(".ball", { y: -50, repeat: -1, yoyo: true });
 
 letters.forEach((letter) => {
-  letter.addEventListener(
-    "click",
-    () => {
-      if (disForm.classList.contains("hide-form"))
-        letter.querySelector("img").src = "./imgs/X.svg";
-      disForm.querySelector("textarea").value = "";
-      disForm.classList.remove("hide-form");
-      ballAnim.play();
-      Draggable.create(disForm, {
-        trigger: "#dragme",
-        onDrag: function () {
-          ballAnim.pause();
-        },
-        onDragEnd: function () {
-          ballAnim.play();
-        },
+  letter.addEventListener("click", () => {
+    const fadeX = gsap
+      .timeline({
+        paused: true,
+        defaults: { transformOrigin: "center center", perspective: 200 },
+      })
+      .fromTo(
+        letter,
+        { scale: 1 },
+        {
+          scale: 0,
+          rotateX: gsap.utils.random(-90, 90),
+          rotateY: gsap.utils.random(-90, 90),
+          rotateZ: gsap.utils.random(-90, 90),
+          duration: 3,
+          onComplete: function () {
+            letter.remove();
+          },
+        }
+      );
+    if (disForm.classList.contains("hide-form")) {
+      letter.querySelector("img").src = "./imgs/X.svg";
+      fadeX.play();
+    }
+    disForm.querySelector("textarea").value = "";
+    disForm.classList.remove("hide-form");
+    ballAnim.play();
+    Draggable.create(disForm, {
+      trigger: "#dragme",
+      onDrag: function () {
+        ballAnim.pause();
+      },
+      onDragEnd: function () {
+        ballAnim.play();
+      },
+    });
+    addPicture().then(() => {
+      document.querySelectorAll(".elem").forEach((el) => {
+        Draggable.create(el);
       });
-      addPicture().then(() => {
-        document.querySelectorAll(".elem").forEach((el) => {
-          Draggable.create(el);
-        });
-      });
-    },
-    { once: true }
-  );
+    });
+  });
 });
 
 let index = 0;
@@ -62,7 +79,7 @@ bucket.addEventListener("click", (event) => {
 function addPicture() {
   return new Promise((resolve) => {
     if (count > 4) {
-      count = 0;
+      count = 1;
     } else {
       count++;
     }
