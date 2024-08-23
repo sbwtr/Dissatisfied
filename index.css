@@ -112,11 +112,61 @@ body {
 #bucket {
   position: absolute;
   right: 0;
-  top: 1em;
+  top: 0;
   background-color: black;
   width: 80px;
   height: 80px;
   color: white;
   font-family: Fustat;
   font-size: large;
+}
+
+.photo-cont {
+  position: absolute;
+  top: 40%;
+  right: -30px;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0 0 8px;
+  background-color: gold;
+  width: 150px;
+  height: 300px;
+  box-sizing: border-box;
+  .photo-scroll {
+    width: 100%;
+    height: 100%;
+    scrollbar-width: none;
+    overflow-y: scroll;
+    > .photo {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 8px;
+      mix-blend-mode: color-burn;
+      > img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+  }
+}
+#pull {
+  position: absolute;
+  top: 0;
+  left: -30px;
+  width: 30px;
+  height: 30px;
+  background-color: black;
+}
+.newphoto {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 200px;
+  height: 200px;
+  > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 }

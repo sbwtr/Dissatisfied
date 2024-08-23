@@ -4,6 +4,7 @@ const parags = document.querySelector("#parags");
 const newPost = document.querySelector("#new-post");
 const button = document.querySelector(".form > button");
 const bucket = document.querySelector("#bucket");
+const photo = document.querySelectorAll(".photo");
 let count = 0;
 
 const ballAnim = gsap
@@ -47,11 +48,6 @@ letters.forEach((letter) => {
         ballAnim.play();
       },
     });
-    addPicture().then(() => {
-      document.querySelectorAll(".elem").forEach((el) => {
-        Draggable.create(el);
-      });
-    });
   });
 });
 
@@ -76,23 +72,20 @@ bucket.addEventListener("click", (event) => {
   parags.querySelector(`#${event.target.textContent}`).innerHTML = "";
 });
 
-function addPicture() {
+photo.forEach((ph) => {
+  ph.addEventListener("click", () => {
+    makePhoto(ph).then(() => {
+      Draggable.create(".newphoto");
+    });
+  });
+});
+
+function makePhoto(obj) {
   return new Promise((resolve) => {
-    if (count > 4) {
-      count = 1;
-    } else {
-      count++;
-    }
-
-    const block = document.createElement("div");
-    block.setAttribute(
-      "style",
-      "position:absolute; bottom:0;left:50%; width:200px; height:200px; background-color:black;"
-    );
-    block.setAttribute("class", "elem");
-    block.innerHTML = `<img style="width:100%; height:100%; object-fit:cover;" src="photos/nasa${count}.jpg" alt="" />`;
-
-    resolve(block, count);
-    document.querySelector("#element").appendChild(block);
+    const makediv = document.createElement("div");
+    makediv.setAttribute("class", "newphoto");
+    makediv.innerHTML = `<img src="${obj.querySelector("img").src}" alt="" />`;
+    resolve(makediv);
+    document.body.appendChild(makediv);
   });
 }
