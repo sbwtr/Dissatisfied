@@ -5,8 +5,8 @@ const newPost = document.querySelector("#new-post");
 const button = document.querySelector(".form > button");
 const bucket = document.querySelector("#bucket");
 const photo = document.querySelectorAll(".photo");
+const pull = document.querySelector("#pull");
 let count = 0;
-
 const ballAnim = gsap
   .timeline()
   .to(".ball", { y: -50, repeat: -1, yoyo: true });
@@ -89,3 +89,17 @@ function makePhoto(obj) {
     document.body.appendChild(makediv);
   });
 }
+
+const photoMenu = gsap
+  .timeline({ paused: true, defaults: { duration: 0.4 } })
+  .to(".photo-cont", { x: -150 })
+  .fromTo(pull, { x: -38 }, { x: 0 }, "<");
+
+photoMenu.reverse();
+pull.addEventListener("click", () => {
+  if (photoMenu.reversed()) {
+    photoMenu.play();
+  } else {
+    photoMenu.reverse();
+  }
+});
