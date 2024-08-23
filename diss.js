@@ -16,7 +16,6 @@ letters.forEach((letter) => {
       Draggable.create(disForm, {
         trigger: "#dragme",
       });
-      new Test().testing().then(console.log("cliske"));
     },
     { once: true }
   );
@@ -37,17 +36,6 @@ button.addEventListener("click", () => {
   });
   index++;
 });
-
-function Test() {}
-
-Test.prototype.testing = function () {
-  return new Promise(function (resolve, reject) {
-    const btn = document.createElement("button");
-    btn.innerHTML = "Next";
-    btn.addEventListener("click", resolve);
-    document.getElementById("element").appendChild(btn);
-  });
-};
 
 bucket.addEventListener("click", (event) => {
   parags.querySelector(`#${event.target.textContent}`).innerHTML = "";
