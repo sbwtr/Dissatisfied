@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dissatisfied</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fustat:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Draggable.min.js"></script>
+    <script src="diss.js" defer></script>
+  </head>
+  <body>
+    <div id="bucket"></div>
+    <div class="letter-cont">
+      <div class="letter">
+        <img src="imgs/D.svg" alt="" />
+      </div>
+      <div class="letter">
+        <img src="imgs/I.svg" alt="" />
+      </div>
+      <div class="letter">
+        <img src="imgs/S.svg" alt="" />
+      </div>
+      <div class="letter">
+        <img src="imgs/S.svg" alt="" />
+      </div>
+      <div class="letter">
+        <img src="imgs/A.svg" alt="" />
+      </div>
+      <div class="letter">
+        <img src="imgs/T.svg" alt="" />
+      </div>
+      <div class="letter">
+        <img src="imgs/I.svg" alt="" />
+      </div>
+      <div class="letter">
+        <img src="imgs/S.svg" alt="" />
+      </div>
+      <div class="letter">
+        <img src="imgs/F.svg" alt="" />
+      </div>
+      <div class="letter">
+        <img src="imgs/I.svg" alt="" />
+      </div>
+      <div class="letter">
+        <img src="imgs/E.svg" alt="" />
+      </div>
+      <div class="letter">
+        <img src="imgs/D.svg" alt="" />
+      </div>
+    </div>
+    <div id="parags"></div>
+    <div class="hide-form" id="dis-cont">
+      <div class="form">
+        <div id="dragme">DRAG ME</div>
+        <textarea
+          name="distxt"
+          id="distxt"
+          maxlength="100"
+          rows="5"
+          cols="20"
+          placeholder="Write your line here..."
+        ></textarea>
+        <button>DONE</button>
+      </div>
+    </div>
+    <div id="element"></div>
+  </body>
+</html>

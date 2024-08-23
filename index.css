@@ -1,0 +1,109 @@
+body {
+  background-color: rgb(236, 236, 236);
+  margin: 0;
+}
+
+.letter-cont {
+  display: flex;
+  flex-wrap: wrap;
+  width: 50%;
+  margin-top: 8px;
+  margin-left: 8px;
+  height: 500px;
+  /* border: 1px solid black; */
+  position: relative;
+  > div {
+    cursor: pointer;
+    width: fit-content;
+    height: 155px;
+    /* border: 1px solid black; */
+    padding-right: 0.2em;
+    padding-bottom: 0.2em;
+    > img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}
+.hide-form {
+  display: none;
+}
+#dis-cont {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#dragme {
+  font-family: Fustat;
+  border: 3px solid red;
+  /* background-color: white; */
+  color: red;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin: 0;
+  width: 100px;
+  text-align: center;
+  align-self: center;
+  margin-bottom: 1em;
+}
+.form {
+  display: none;
+
+  padding: 1em;
+  background-color: transparent;
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  font-family: Fustat;
+  z-index: 100;
+  > p {
+    color: blue;
+    width: 70%;
+    margin-bottom: 1em;
+  }
+  > textarea {
+    margin-bottom: 1em;
+    border: none;
+    color: aliceblue;
+    background-color: blue;
+  }
+  > button {
+    width: 50%;
+    align-self: flex-end;
+    background: white;
+    background-color: blue;
+    border: none;
+    padding: 1em;
+    margin: 0;
+    color: white;
+  }
+}
+
+#parags {
+  > p {
+    position: absolute;
+    bottom: 1em;
+    left: 1em;
+    font-family: Fustat;
+    display: inline-block;
+    font-weight: 800;
+    font-size: large;
+    margin: 0;
+    width: 200px;
+    line-height: 1em;
+  }
+}
+
+#bucket {
+  position: absolute;
+  right: 0;
+  top: 1em;
+  background-color: black;
+  width: 80px;
+  height: 80px;
+  color: white;
+  font-family: Fustat;
+  font-size: large;
+}
