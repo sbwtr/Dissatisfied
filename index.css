@@ -26,19 +26,18 @@ body {
     }
   }
 }
-.hide-form {
+/* .hide-form {
   display: none;
-}
-#dis-cont {
+} */
+.form-cont {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-#dragme {
+/* #dragme {
   font-family: Fustat;
   border: 3px solid red;
-  /* background-color: white; */
   color: red;
   font-weight: 800;
   text-transform: uppercase;
@@ -47,7 +46,7 @@ body {
   text-align: center;
   align-self: center;
   margin-bottom: 1em;
-}
+} */
 .form {
   display: none;
 
