@@ -1,3 +1,7 @@
+html {
+  overflow: hidden;
+}
+
 body {
   background-color: rgb(236, 236, 236);
   margin: 0;
@@ -35,7 +39,17 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-/* #dragme {
+.ball {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  background-color: gold;
+  border-radius: 50%;
+}
+#dragme {
   font-family: Fustat;
   border: 3px solid red;
   color: red;
@@ -46,10 +60,9 @@ body {
   text-align: center;
   align-self: center;
   margin-bottom: 1em;
-} */
+}
 .form {
   display: none;
-
   padding: 1em;
   background-color: transparent;
   /* border: 1px solid black; */
@@ -98,11 +111,60 @@ body {
 #bucket {
   position: absolute;
   right: 0;
-  top: 1em;
+  top: 0;
   background-color: black;
   width: 80px;
   height: 80px;
   color: white;
   font-family: Fustat;
   font-size: large;
+}
+
+.photo-cont {
+  position: absolute;
+  bottom: 0;
+  right: -150px;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0 0 8px;
+  background-color: gold;
+  width: 150px;
+  height: 300px;
+  box-sizing: border-box;
+  .photo-scroll {
+    width: 100%;
+    height: 100%;
+    scrollbar-width: none;
+    overflow-y: scroll;
+    > .photo {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 8px;
+      mix-blend-mode: color-burn;
+      > img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+  }
+}
+#pull {
+  cursor: pointer;
+
+  width: 30px;
+  height: 30px;
+  background-color: black;
+}
+.newphoto {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 200px;
+  height: 200px;
+  > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 }
