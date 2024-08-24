@@ -3,6 +3,7 @@ const form = document.querySelector(".form");
 const objects = document.querySelector("#objects");
 const photoCont = document.querySelector("#photo-display");
 const photo = document.querySelectorAll(".photo");
+const bucket = document.querySelector("#bucket");
 
 class storePos {
   static XPos;
@@ -11,6 +12,12 @@ class storePos {
     return { x: this.XPos, y: this.YPos };
   }
 }
+class Erase {
+  static object;
+}
+bucket.addEventListener("click", () => {
+  Erase.object.remove();
+});
 
 document.body.addEventListener("click", (event) => {
   if (event.ctrlKey && disCont.classList.contains("hide-cont")) {
@@ -59,7 +66,11 @@ function addParag(x, y, value) {
   note.style.left = `${x}px`;
   note.textContent = value;
   objects.appendChild(note);
-  Draggable.create(".note");
+  Draggable.create(".note", {
+    onClick: function () {
+      Erase.object = this.target;
+    },
+  });
   disCont.classList.add("hide-cont");
 }
 
@@ -70,6 +81,10 @@ function addPict(x, y, value) {
   pict.style.top = `${y}px`;
   pict.style.left = `${x}px`;
   objects.appendChild(pict);
-  Draggable.create(".picture");
+  Draggable.create(".picture", {
+    onClick: function () {
+      Erase.object = this.target;
+    },
+  });
   photoCont.classList.add("hide-cont");
 }
