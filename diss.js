@@ -4,7 +4,12 @@ const objects = document.querySelector("#objects");
 const photoCont = document.querySelector("#photo-display");
 const photo = document.querySelectorAll(".photo");
 const bucket = document.querySelector("#bucket");
-
+const userHelp = document.querySelector("#user-help");
+const removeHelp = document.querySelector("#remove");
+const helpData = {
+  intro:
+    "ctrlClick to add paragraph or altClick to add picture. drag to position anywhere. click on element and then on bucket to remove",
+};
 class storePos {
   static XPos;
   static YPos;
@@ -15,6 +20,13 @@ class storePos {
 class Erase {
   static object;
 }
+
+//--------------------------------------
+
+userHelp.textContent = helpData.intro;
+removeHelp.addEventListener("click", () => {
+  document.querySelector(".help-cont").classList.add("hide-cont");
+});
 bucket.addEventListener("click", () => {
   Erase.object.remove();
 });

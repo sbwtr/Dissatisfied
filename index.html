@@ -10,6 +10,12 @@
       href="https://fonts.googleapis.com/css2?family=Fustat:wght@200..800&display=swap"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="index.css" />
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 
@@ -17,13 +23,20 @@
     <script src="diss.js" defer></script>
   </head>
   <body>
+    <div class="help-cont">
+      <p id="user-help"></p>
+      <p id="remove">remove</p>
+    </div>
+
     <div id="bucket">
-      <p></p>
       <img src="/imgs/bucket.png" alt="" />
     </div>
     <div id="objects"></div>
     <div class="hide-cont" id="dis-cont">
       <div class="form">
+        <div class="hand">
+          <img src="imgs/hand.png" alt="" />
+        </div>
         <p>Write your line below</p>
         <textarea name="distxt" maxlength="100" rows="5" cols="20"></textarea>
         <button>DONE</button>
