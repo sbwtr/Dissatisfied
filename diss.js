@@ -1,31 +1,55 @@
 const disCont = document.querySelector("#dis-cont");
 const form = document.querySelector(".form");
-const parags = document.querySelector("#parags");
+const objects = document.querySelector("#objects");
+const photoCont = document.querySelector("#photo-display");
+const photo = document.querySelectorAll(".photo");
 
-class storeNotePos {
-  static noteXPos;
-  static noteYPos;
+class storePos {
+  static XPos;
+  static YPos;
   static getValues() {
-    return { x: this.noteXPos, y: this.noteYPos };
+    return { x: this.XPos, y: this.YPos };
   }
 }
 
 document.body.addEventListener("click", (event) => {
   if (event.ctrlKey && disCont.classList.contains("hide-cont")) {
-    storeNotePos.noteXPos = event.clientX;
-    storeNotePos.noteYPos = event.clientY;
-    disCont.style.top = `${event.clientY}px`;
-    disCont.style.left = `${event.clientX}px`;
-    disCont.classList.remove("hide-cont");
+    placeForm(event, disCont, true);
+  }
+  if (event.altKey && photoCont.classList.contains("hide-cont")) {
+    placeForm(event, photoCont, false);
   }
 });
 
+function placeForm(e, domEl, isform) {
+  if (isform) {
+    domEl.querySelector("textarea").value = "";
+  }
+  storePos.XPos = e.clientX;
+  storePos.YPos = e.clientY;
+  domEl.style.top = `${e.clientY}px`;
+  domEl.style.left = `${e.clientX}px`;
+  domEl.classList.remove("hide-cont");
+  domEl.style.zIndex += 1001;
+}
+
 form.querySelector("button").addEventListener("click", () => {
-  addParag(
-    storeNotePos.getValues().x,
-    storeNotePos.getValues().y,
-    form.querySelector("textarea").value
-  );
+  if (form.querySelector("textarea").value !== "")
+    addParag(
+      storePos.getValues().x,
+      storePos.getValues().y,
+      form.querySelector("textarea").value
+    );
+});
+
+photo.forEach((ph) => {
+  ph.addEventListener("click", () => {
+    addPict(
+      storePos.getValues().x,
+      storePos.getValues().y,
+      ph.querySelector("img").src
+    );
+  });
 });
 
 function addParag(x, y, value) {
@@ -34,7 +58,18 @@ function addParag(x, y, value) {
   note.style.top = `${y}px`;
   note.style.left = `${x}px`;
   note.textContent = value;
-  parags.appendChild(note);
+  objects.appendChild(note);
   Draggable.create(".note");
   disCont.classList.add("hide-cont");
+}
+
+function addPict(x, y, value) {
+  const pict = document.createElement("div");
+  pict.setAttribute("class", "picture");
+  pict.innerHTML = `<img src=${value} alt="" />`;
+  pict.style.top = `${y}px`;
+  pict.style.left = `${x}px`;
+  objects.appendChild(pict);
+  Draggable.create(".picture");
+  photoCont.classList.add("hide-cont");
 }

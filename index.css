@@ -15,6 +15,7 @@ body {
 #dis-cont {
   width: 250px;
   position: absolute;
+  transform: translate(-50%, -50%);
 }
 
 .form {
@@ -49,7 +50,7 @@ body {
   }
 }
 
-#parags {
+#objects {
   > .note {
     position: absolute;
     font-family: Fustat;
@@ -60,59 +61,65 @@ body {
     width: 200px;
     line-height: 1em;
   }
+  > .picture {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    > img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
 }
 
 #bucket {
   position: absolute;
   right: 0;
   top: 0;
-  background-color: black;
   width: 80px;
   height: 80px;
-  color: white;
-  font-family: Fustat;
-  font-size: large;
-}
-
-.photo-cont {
-  position: absolute;
-  bottom: 0;
-  right: -150px;
-  display: flex;
-  flex-direction: column;
-  padding: 8px 0 0 8px;
-  background-color: gold;
-  width: 150px;
-  height: 300px;
-  box-sizing: border-box;
-  .photo-scroll {
-    width: 100%;
-    height: 100%;
-    scrollbar-width: none;
-    overflow-y: scroll;
-    > .photo {
-      width: 100px;
-      height: 100px;
-      margin-bottom: 8px;
-      mix-blend-mode: color-burn;
-      > img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-      }
-    }
+  > p {
+    color: white;
+    font-family: Fustat;
+    font-size: large;
   }
-}
-
-.newphoto {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 200px;
-  height: 200px;
   > img {
     width: 100%;
     height: 100%;
     object-fit: contain;
+  }
+}
+#photo-display {
+  position: absolute;
+}
+#eye {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 80px;
+  transform: rotate(-15deg);
+  > img {
+    width: 100%;
+    object-fit: contain;
+  }
+}
+#photo-cont {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  grid-auto-flow: 1fr;
+  gap: 4px;
+  padding: 4px;
+  background-color: gold;
+  > .photo {
+    width: 100px;
+    height: 100px;
+    mix-blend-mode: color-burn;
+    > img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
   }
 }
