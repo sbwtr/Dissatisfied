@@ -54,49 +54,48 @@ function placeForm(e, domEl, isform) {
 
 form.querySelector("button").addEventListener("click", () => {
   if (form.querySelector("textarea").value !== "")
-    addParag(
+    buildObject(
       storePos.getValues().x,
       storePos.getValues().y,
-      form.querySelector("textarea").value
+      form.querySelector("textarea").value,
+      "note"
     );
 });
 
 photo.forEach((ph) => {
   ph.addEventListener("click", () => {
-    addPict(
+    buildObject(
       storePos.getValues().x,
       storePos.getValues().y,
-      ph.querySelector("img").src
+      ph.querySelector("img").src,
+      "picture"
     );
   });
 });
 
-function addParag(x, y, value) {
-  const note = document.createElement("p");
-  note.setAttribute("class", "note");
-  note.style.top = `${y}px`;
-  note.style.left = `${x}px`;
-  note.textContent = value;
-  objects.appendChild(note);
-  Draggable.create(".note", {
+function buildObject(x, y, value, type) {
+  let obj;
+  switch (type) {
+    case "note":
+      disCont.classList.add("hide-cont");
+      obj = document.createElement("p");
+      obj.textContent = value;
+      break;
+    case "picture":
+      photoCont.classList.add("hide-cont");
+      obj = document.createElement("div");
+      obj.innerHTML = `<img src=${value} alt="" />`;
+      break;
+    default:
+      break;
+  }
+  obj.setAttribute("class", type);
+  obj.style.top = `${x}px`;
+  obj.style.left = `${y}px`;
+  Draggable.create(obj, {
     onClick: function () {
       Erase.object = this.target;
     },
   });
-  disCont.classList.add("hide-cont");
-}
-
-function addPict(x, y, value) {
-  const pict = document.createElement("div");
-  pict.setAttribute("class", "picture");
-  pict.innerHTML = `<img src=${value} alt="" />`;
-  pict.style.top = `${y}px`;
-  pict.style.left = `${x}px`;
-  objects.appendChild(pict);
-  Draggable.create(".picture", {
-    onClick: function () {
-      Erase.object = this.target;
-    },
-  });
-  photoCont.classList.add("hide-cont");
+  objects.appendChild(obj);
 }
