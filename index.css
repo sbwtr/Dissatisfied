@@ -131,6 +131,20 @@ body {
     object-fit: contain;
   }
 }
+
+#save {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  cursor: pointer;
+  > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
 #photo-display {
   position: absolute;
   transform: translate(-50%, -50%);

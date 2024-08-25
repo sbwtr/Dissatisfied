@@ -31,11 +31,9 @@ bucket.addEventListener("click", () => {
 document.body.addEventListener("click", (event) => {
   if (event.ctrlKey && disCont.classList.contains("hide-cont")) {
     placeForm(event, disCont, true);
-    console.log(storePos.XPos, storePos.YPos);
   }
   if (event.altKey && photoCont.classList.contains("hide-cont")) {
     placeForm(event, photoCont, false);
-    console.log(storePos.XPos, storePos.YPos);
   }
 });
 
@@ -91,7 +89,6 @@ function buildObject(x, y, value, type) {
   obj.setAttribute("class", type);
   obj.style.top = `${y}px`;
   obj.style.left = `${x}px`;
-  console.log(obj.style.top, obj.style.left);
   Draggable.create(obj, {
     onClick: function () {
       Erase.object = this.target;
@@ -99,3 +96,13 @@ function buildObject(x, y, value, type) {
   });
   objects.appendChild(obj);
 }
+document.querySelector("#save").addEventListener("click", () => {
+  document.querySelectorAll(".picture").forEach((n) => {
+    console.log({
+      x: Math.floor(n.getBoundingClientRect().x),
+      y: Math.floor(n.getBoundingClientRect().y),
+      value: n.firstChild.currentSrc,
+      type: n.getAttribute("class"),
+    });
+  });
+});
