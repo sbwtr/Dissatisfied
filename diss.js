@@ -13,9 +13,6 @@ const helpData = {
 class storePos {
   static XPos;
   static YPos;
-  static getValues() {
-    return { x: this.XPos, y: this.YPos };
-  }
 }
 class Erase {
   static object;
@@ -25,7 +22,7 @@ class Erase {
 
 userHelp.textContent = helpData.intro;
 removeHelp.addEventListener("click", () => {
-  document.querySelector(".help-cont").classList.add("hide-cont");
+  document.querySelector(".help-cont").remove();
 });
 bucket.addEventListener("click", () => {
   Erase.object.remove();
@@ -34,9 +31,11 @@ bucket.addEventListener("click", () => {
 document.body.addEventListener("click", (event) => {
   if (event.ctrlKey && disCont.classList.contains("hide-cont")) {
     placeForm(event, disCont, true);
+    console.log(storePos.XPos, storePos.YPos);
   }
   if (event.altKey && photoCont.classList.contains("hide-cont")) {
     placeForm(event, photoCont, false);
+    console.log(storePos.XPos, storePos.YPos);
   }
 });
 
@@ -55,8 +54,8 @@ function placeForm(e, domEl, isform) {
 form.querySelector("button").addEventListener("click", () => {
   if (form.querySelector("textarea").value !== "")
     buildObject(
-      storePos.getValues().x,
-      storePos.getValues().y,
+      storePos.XPos,
+      storePos.YPos,
       form.querySelector("textarea").value,
       "note"
     );
@@ -65,8 +64,8 @@ form.querySelector("button").addEventListener("click", () => {
 photo.forEach((ph) => {
   ph.addEventListener("click", () => {
     buildObject(
-      storePos.getValues().x,
-      storePos.getValues().y,
+      storePos.XPos,
+      storePos.YPos,
       ph.querySelector("img").src,
       "picture"
     );
@@ -90,8 +89,9 @@ function buildObject(x, y, value, type) {
       break;
   }
   obj.setAttribute("class", type);
-  obj.style.top = `${x}px`;
-  obj.style.left = `${y}px`;
+  obj.style.top = `${y}px`;
+  obj.style.left = `${x}px`;
+  console.log(obj.style.top, obj.style.left);
   Draggable.create(obj, {
     onClick: function () {
       Erase.object = this.target;
