@@ -97,11 +97,19 @@ function buildObject(x, y, value, type) {
   objects.appendChild(obj);
 }
 document.querySelector("#save").addEventListener("click", () => {
-  document.querySelectorAll(".picture").forEach((n) => {
+  document.querySelectorAll(".picture").forEach((p) => {
+    console.log({
+      x: Math.floor(p.getBoundingClientRect().x),
+      y: Math.floor(p.getBoundingClientRect().y),
+      value: p.firstChild.currentSrc,
+      type: p.getAttribute("class"),
+    });
+  });
+  document.querySelectorAll(".note").forEach((n) => {
     console.log({
       x: Math.floor(n.getBoundingClientRect().x),
       y: Math.floor(n.getBoundingClientRect().y),
-      value: n.firstChild.currentSrc,
+      value: n.textContent,
       type: n.getAttribute("class"),
     });
   });
