@@ -23,7 +23,7 @@ class Erase {
 
 userHelp.textContent = helpData.intro;
 removeHelp.addEventListener("click", () => {
-  document.querySelector(".help-cont").remove();
+  document.querySelector(".help-cont").innerHTML = "";
 });
 bucket.addEventListener("click", () => {
   Erase.object.remove();
@@ -132,3 +132,22 @@ function SaveObjects(data) {
     console.error("Error writing to LS\n" + error);
   }
 }
+
+document.querySelector("#load").addEventListener("click", () => {
+  document.querySelector("#objects").innerHTML = "";
+  let retIDs = [];
+  try {
+    retIDs = JSON.parse(localStorage["ids"]);
+  } catch (error) {
+    console.error("Error reading ids array from LS\n" + error);
+  }
+  let retItem;
+  retIDs.forEach((ret) => {
+    try {
+      retItem = JSON.parse(localStorage[`${ret}`]);
+      buildObject(retItem.x, retItem.y, retItem.value, retItem.type);
+    } catch (error) {
+      console.log("Error reading items from locaStorage\n" + error);
+    }
+  });
+});
