@@ -6,6 +6,7 @@ const photo = document.querySelectorAll(".photo");
 const bucket = document.querySelector("#bucket");
 const userHelp = document.querySelector("#user-help");
 const removeHelp = document.querySelector("#remove");
+let IDs = [];
 const helpData = {
   intro:
     "ctrlClick to add paragraph or altClick to add picture. drag to position anywhere. click on element and then on bucket to remove",
@@ -97,8 +98,11 @@ function buildObject(x, y, value, type) {
   objects.appendChild(obj);
 }
 document.querySelector("#save").addEventListener("click", () => {
+  IDs = [];
+  localStorage.clear();
+
   document.querySelectorAll(".picture").forEach((p) => {
-    console.log({
+    SaveObjects({
       x: Math.floor(p.getBoundingClientRect().x),
       y: Math.floor(p.getBoundingClientRect().y),
       value: p.firstChild.currentSrc,
@@ -106,7 +110,7 @@ document.querySelector("#save").addEventListener("click", () => {
     });
   });
   document.querySelectorAll(".note").forEach((n) => {
-    console.log({
+    SaveObjects({
       x: Math.floor(n.getBoundingClientRect().x),
       y: Math.floor(n.getBoundingClientRect().y),
       value: n.textContent,
@@ -114,3 +118,17 @@ document.querySelector("#save").addEventListener("click", () => {
     });
   });
 });
+
+function randId() {
+  return Math.random().toFixed(5).toString().slice(2);
+}
+
+function SaveObjects(data) {
+  IDs.unshift(randId());
+  try {
+    localStorage["ids"] = JSON.stringify(IDs);
+    localStorage[IDs[0]] = JSON.stringify(data);
+  } catch (error) {
+    console.error("Error writing to LS\n" + error);
+  }
+}
